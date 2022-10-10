@@ -7,6 +7,7 @@ There are three actions:
 0: Left
 1: Nothing
 2: Right
+
 """
 env = gym.make("MountainCar-v0", render_mode='human')
 env.reset()
