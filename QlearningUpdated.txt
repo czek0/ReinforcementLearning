@@ -9,7 +9,7 @@ executionEnv = gym.make("MountainCar-v0", render_mode="human")
 
 LEARNING_RATE = 0.1
 DISCOUNT = 0.95
-EPISODES = 5000
+EPISODES = 2000
 SHOW_EVERY = 3000
 MAX_EPISODE = 250
 DISCRETE_OS_SIZE = [20, 20]
@@ -67,7 +67,7 @@ def training(epsilon):
             # Update Q table with new Q value
             q_table[discrete_state + (action,)] = new_q
 
-            # Simulation ended (for any reson) - if goal position is achived - update Q value with reward directly
+            # Simulation ended (for any reason) - if goal position is achieved - update Q value with reward directly
             if new_state[0] >= trainingEnv.goal_position:
                 #q_table[discrete_state + (action,)] = reward
                 q_table[discrete_state + (action,)] = 0
@@ -80,7 +80,7 @@ def training(epsilon):
 
 
 if __name__ == "__main__":
-    print("beginning training")
+    print("Beginning training...")
     ep = 1
     training(ep)
     discrete_state = get_discrete_state(executionEnv.reset()[0])
