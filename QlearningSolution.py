@@ -51,16 +51,13 @@ def training(epsilon):
 
 
             new_state, reward, done, truncated, _ = trainingEnv.step(action)
-
             new_discrete_state = get_discrete_state(new_state)
 
             # If simulation did not end yet after last step - update Q table
                 # Maximum possible Q value in next step (for new state)
             max_future_q = np.max(q_table[new_discrete_state])
-
             # Current Q value (for current state and performed action)
             current_q = q_table[discrete_state + (action,)]
-
             # And here's our equation for a new Q value for current state and action
             new_q = (1 - LEARNING_RATE) * current_q + LEARNING_RATE * (reward + DISCOUNT * max_future_q)
 
@@ -71,6 +68,7 @@ def training(epsilon):
             if new_state[0] >= trainingEnv.goal_position:
                 #q_table[discrete_state + (action,)] = reward
                 q_table[discrete_state + (action,)] = 0
+
             discrete_state = new_discrete_state
 
         # Decaying is being done every episode if episode number is within decaying range
