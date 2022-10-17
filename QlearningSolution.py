@@ -54,6 +54,7 @@ def training(epsilon):
 
         print(episode)
 
+
         # every 20 episodes, check the average reward
         if episode % 20 == 0 and episode > 50:
             print("best : ",best_average_reward)
